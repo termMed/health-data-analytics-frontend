@@ -75,10 +75,10 @@ export default Ember.Controller.extend({
             if(this.get('model.gender') !== null && this.get('model.gender') !== undefined){
                 //Changes to make it work in spanish translation
                 if(this.set('model.gender') == 'Masculino'){
-                    this.set('model.gender') = 'Male';
+                    this.set('model.gender', 'Male');
                 }
                 if(this.set('model.gender') == 'Femenino'){
-                    this.set('model.gender') = 'Female';
+                    this.set('model.gender', 'Female');
                 }
                 gender = this.get('model.gender').toUpperCase();
             }
