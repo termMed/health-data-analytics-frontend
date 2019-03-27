@@ -74,11 +74,11 @@ export default Ember.Controller.extend({
             this.set('model.gender', $('#genderSelect').find(":selected").text());
             if(this.get('model.gender') !== null && this.get('model.gender') !== undefined){
                 //Changes to make it work in spanish translation
-                if(this.get('model.gender') == 'Masculino'){
-                    this.get('model.gender') = 'Male';
+                if(this.set('model.gender') == 'Masculino'){
+                    this.set('model.gender') = 'Male';
                 }
-                if(this.get('model.gender') == 'Femenino'){
-                    this.get('model.gender') = 'Female';
+                if(this.set('model.gender') == 'Femenino'){
+                    this.set('model.gender') = 'Female';
                 }
                 gender = this.get('model.gender').toUpperCase();
             }
