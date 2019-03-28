@@ -101,7 +101,7 @@ export default Ember.Controller.extend({
                 ecl : ecl
             };
             var ecl_string = postData.ecl;
-            this.set("model.eclstring", ecl_string);
+            this.set("model.eclstring", "Su consulta ECL fue: " + ecl_string);
 //            this.get('ajax').delete('/health-analytics-api/subsets/' + this.get("model.id"))
 //                .then(() => {
 //                });
