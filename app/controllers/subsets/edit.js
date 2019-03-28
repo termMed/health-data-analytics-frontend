@@ -7,7 +7,6 @@ export default Ember.Controller.extend({
             let eclObjects = this.get("model.eclObjects");
             let eclModel = JSON.stringify(eclObjects);
             this.set("model.eclModel", eclModel);
-            this.set("model.eclstringcustom", 'sdgdsgdsggsdg');
 
             let ecl = "";
             let focusConcepts = eclObjects.focusConcepts;
@@ -102,8 +101,7 @@ export default Ember.Controller.extend({
                 ecl : ecl
             };
             var ecl_string = postData.ecl;
-            console.log(ecl_string);
-            this.set("model.eclstringcustom", ecl_string);
+            this.set("model.eclstring", ecl_string);
 //            this.get('ajax').delete('/health-analytics-api/subsets/' + this.get("model.id"))
 //                .then(() => {
 //                });
