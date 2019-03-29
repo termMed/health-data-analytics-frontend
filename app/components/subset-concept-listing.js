@@ -111,7 +111,7 @@ export default Ember.Component.extend({
                             });
                         }
                         else if(scope.get('mrcmType') && scope.get('parentId')){
-                            scope.get('ajax').request('http://snow-dev.termspace.com/mrcm/MAIN/domain-attributes?parentIds=' + scope.get('parentId') + '&expand=fsn()&offset=0&limit=50')
+                            scope.get('ajax').request('/mrcm/MAIN/domain-attributes?parentIds=' + scope.get('parentId') + '&expand=fsn()&offset=0&limit=50')
                                 .then((result) => {
                                 var filteredAttrs = [];
                                 result.items.forEach(function(item){
