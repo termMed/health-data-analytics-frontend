@@ -21,6 +21,7 @@ export default Ember.Component.extend({
                 console.log("concept list component, fetching fsn " + conceptId);
                 this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
                     .then((concept) => {
+                        console.log('conceptid is ' + conceptId);
                         if(concept.descriptions.length() > 0) {
                             term = this.get('conceptFsnTerm');
                             console.log('Term is:' + term);
