@@ -22,6 +22,7 @@ export default Ember.Component.extend({
         if (!Ember.isBlank(conceptId)) {
             if(conceptId !== '*'){
                 console.log("concept list component, fetching fsn " + conceptId);
+                console.log('FSN is ' + conceptFsn);
                 this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
                     .then((concept) => {
                         // if(concept.descriptions.length > 0) {
@@ -39,7 +40,6 @@ export default Ember.Component.extend({
                         // } else {
                         //     this.set('conceptFsn', concept.fsn);
                         // }
-                        console.log('FSN is ' + conceptFsn);
                     })
                     .catch(() => {
                         this.set('conceptFsn', conceptId);
