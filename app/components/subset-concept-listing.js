@@ -26,7 +26,7 @@ export default Ember.Component.extend({
                             i = 0;
                             while(i < concept.descriptions.length()){
                                 if(concept.descriptions[i].term == term){
-                                    this.set('conceptFsn', term);
+                                    this.set('conceptFsnTerm', term);
                                 }
                                 i++;
                             }
