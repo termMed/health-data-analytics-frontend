@@ -24,21 +24,22 @@ export default Ember.Component.extend({
                 console.log("concept list component, fetching fsn " + conceptId);
                 this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
                     .then((concept) => {
-                        if(concept.descriptions.length > 0) {
-                            console.log('conceptid is ' + conceptId);
-                            console.log('FSN is:' + conceptFsn);
+                        // if(concept.descriptions.length > 0) {
+                        //     console.log('conceptid is ' + conceptId);
+                        //     console.log('FSN is:' + conceptFsn);
 
-                            console.log('Term is:' + conceptFsnTerm);
-                            var i = 0;
-                            while(i < concept.descriptions.length){
-                                if(concept.descriptions[i].term == conceptFsnTerm){
-                                    this.set('conceptFsn', conceptFsnTerm); //term is not neccessearily FSN
-                                }
-                                i++;
-                            }
-                        } else {
-                            this.set('conceptFsn', concept.fsn);
-                        }
+                        //     console.log('Term is:' + conceptFsnTerm);
+                        //     var i = 0;
+                        //     while(i < concept.descriptions.length){
+                        //         if(concept.descriptions[i].term == conceptFsnTerm){
+                        //             this.set('conceptFsn', conceptFsnTerm); //term is not neccessearily FSN
+                        //         }
+                        //         i++;
+                        //     }
+                        // } else {
+                        //     this.set('conceptFsn', concept.fsn);
+                        // }
+                        console.log('FSN is ' + conceptFsn);
                     })
                     .catch(() => {
                         this.set('conceptFsn', conceptId);
