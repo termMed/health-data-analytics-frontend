@@ -26,6 +26,8 @@ export default Ember.Component.extend({
                     .then((concept) => {
                         if(concept.descriptions.length > 0) {
                             console.log('conceptid is ' + conceptId);
+                            console.log('FSN is:' + conceptFsn);
+
                             console.log('Term is:' + conceptFsnTerm);
                             var i = 0;
                             while(i < concept.descriptions.length){
