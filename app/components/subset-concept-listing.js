@@ -19,9 +19,20 @@ export default Ember.Component.extend({
         if (!Ember.isBlank(conceptId)) {
             if(conceptId !== '*'){
                 console.log("concept list component, fetching fsn " + conceptId);
-                this.get('ajax').request('/health-analytics-api/concepts/' + conceptId)
+                this.get('ajax').request('/mrcm/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
                     .then((concept) => {
-                        this.set('conceptFsn', concept.fsn);
+                        if(concept.descriptions.length() > 0) {
+                            term = this.get('conceptFsnTerm');
+                            i = 0;
+                            while(i < concept.descriptions.length()){
+                                if(concept.descriptions[i].term == term){
+                                    this.set('conceptFsn', term);
+                                }
+                                i++;
+                            }
+                        } else {
+                            this.set('conceptFsn', concept.fsn);
+                        }
                     })
                     .catch(() => {
                         this.set('conceptFsn', conceptId);
@@ -111,7 +122,7 @@ export default Ember.Component.extend({
                             });
                         }
                         else if(scope.get('mrcmType') && scope.get('parentId')){
-                            scope.get('ajax').request('/mrcm/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/domain-attributes?parentIds=' + scope.get('parentId') + '&expand=fsn()&offset=0&limit=50')
+                            scope.get('ajax').request('/mrcm/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/domain-attributes?parentIds=' + scope.get('parentId') + '&expand=fsn()&offset=0&limit=50',)
                                 .then((result) => {
                                 var filteredAttrs = [];
                                 result.items.forEach(function(item){
@@ -156,6 +167,7 @@ export default Ember.Component.extend({
         },
         choose(concept) {
             this.set('conceptFsn', concept.fsn);
+            this.set('conceptFsnTerm', concept.fsn.term);
             this.set('conceptId', concept.id);
             this.set('filteredList', null);
             // Call parent choose action
