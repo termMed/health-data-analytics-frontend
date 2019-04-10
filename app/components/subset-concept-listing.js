@@ -4,7 +4,6 @@ import {isAjaxError, isNotFoundError, isForbiddenError} from 'ember-ajax/errors'
 export default Ember.Component.extend({
     ajax: Ember.inject.service(),
     conceptFsn: null,
-    conceptFsnTerm: null,
     conceptId: null,
     filteredList: null,
     mrcmType: null,
@@ -14,32 +13,15 @@ export default Ember.Component.extend({
     init: function() {
         this._super();
         let conceptId = this.get('conceptId');
-        let conceptFsn = this.get('conceptFsn');
-        let conceptFsnTerm = this.get('conceptFsnTerm');
         let mrcmType = this.get('mrcmType');
         let mrcmTarget = this.get('mrcmTarget');
         let typeId = this.get('typeId');
         if (!Ember.isBlank(conceptId)) {
             if(conceptId !== '*'){
                 console.log("concept list component, fetching fsn " + conceptId);
-                console.log('FSN is ' + conceptFsn);
-                this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
+                this.get('ajax').request('/health-analytics-api/concepts/' + conceptId)
                     .then((concept) => {
-                        // if(concept.descriptions.length > 0) {
-                        //     console.log('conceptid is ' + conceptId);
-                        //     console.log('FSN is:' + conceptFsn);
-
-                        //     console.log('Term is:' + conceptFsnTerm);
-                        //     var i = 0;
-                        //     while(i < concept.descriptions.length){
-                        //         if(concept.descriptions[i].term == conceptFsnTerm){
-                        //             this.set('conceptFsn', conceptFsnTerm); //term is not neccessearily FSN
-                        //         }
-                        //         i++;
-                        //     }
-                        // } else {
-                        //     this.set('conceptFsn', concept.fsn);
-                        // }
+                        this.set('conceptFsn', concept.fsn);
                     })
                     .catch(() => {
                         this.set('conceptFsn', conceptId);
@@ -111,7 +93,6 @@ export default Ember.Component.extend({
                                 .then((result) => {
                                 var filteredAttrs = [];
                                 result.items.forEach(function(item){
-                                    item.fsn.term = item.fsn.term;
                                     item.fsn = item.fsn.term;
                                     item.id = item.id;
                                     if(item.fsn.toLowerCase().indexOf(param.toLowerCase()) !== -1){
@@ -134,7 +115,6 @@ export default Ember.Component.extend({
                                 .then((result) => {
                                 var filteredAttrs = [];
                                 result.items.forEach(function(item){
-                                    item.fsn.term = item.fsn.term;
                                     item.fsn = item.fsn.term;
                                     item.id = item.id;
                                     if(item.fsn.toLowerCase().indexOf(param.toLowerCase()) !== -1){
@@ -176,8 +156,7 @@ export default Ember.Component.extend({
         },
         choose(concept) {
             this.set('conceptFsn', concept.fsn);
-            this.set('conceptFsnTerm', concept.fsn.term);
-            this.set('conceptId', '00000000');
+            this.set('conceptId', concept.id);
             this.set('filteredList', null);
             // Call parent choose action
             this.get('choose')(this.set('filter', concept.id));
