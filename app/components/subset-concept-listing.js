@@ -21,12 +21,12 @@ export default Ember.Component.extend({
                 console.log("concept list component, fetching fsn " + conceptId);
                 this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
                     .then((concept) => {
-                        console.log('conceptid is ' + conceptId);
-                        if(concept.descriptions.length() > 0) {
+                        if(concept.descriptions.length > 0) {
+                            console.log('conceptid is ' + conceptId);
                             var term = this.get('conceptFsnTerm');
                             console.log('Term is:' + term);
                             var i = 0;
-                            while(i < concept.descriptions.length()){
+                            while(i < concept.descriptions.length){
                                 if(concept.descriptions[i].term == term){
                                     this.set('conceptFsn', term); //term is not neccessearily FSN
                                 }
