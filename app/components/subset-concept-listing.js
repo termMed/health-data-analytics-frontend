@@ -26,12 +26,11 @@ export default Ember.Component.extend({
                     .then((concept) => {
                         if(concept.descriptions.length > 0) {
                             console.log('conceptid is ' + conceptId);
-                            var term = this.get('conceptFsnTerm');
-                            console.log('Term is:' + term);
+                            console.log('Term is:' + conceptFsnTerm);
                             var i = 0;
                             while(i < concept.descriptions.length){
-                                if(concept.descriptions[i].term == term){
-                                    this.set('conceptFsn', term); //term is not neccessearily FSN
+                                if(concept.descriptions[i].term == conceptFsnTerm){
+                                    this.set('conceptFsn', conceptFsnTerm); //term is not neccessearily FSN
                                 }
                                 i++;
                             }
