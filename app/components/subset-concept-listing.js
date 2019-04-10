@@ -19,7 +19,7 @@ export default Ember.Component.extend({
         if (!Ember.isBlank(conceptId)) {
             if(conceptId !== '*'){
                 console.log("concept list component, fetching fsn " + conceptId);
-                this.get('ajax').request('/mrcm/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
+                this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
                     .then((concept) => {
                         if(concept.descriptions.length() > 0) {
                             term = this.get('conceptFsnTerm');
