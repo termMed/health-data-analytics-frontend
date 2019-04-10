@@ -23,9 +23,9 @@ export default Ember.Component.extend({
                     .then((concept) => {
                         console.log('conceptid is ' + conceptId);
                         if(concept.descriptions.length() > 0) {
-                            term = this.get('conceptFsnTerm');
+                            var term = this.get('conceptFsnTerm');
                             console.log('Term is:' + term);
-                            i = 0;
+                            var i = 0;
                             while(i < concept.descriptions.length()){
                                 if(concept.descriptions[i].term == term){
                                     this.set('conceptFsn', term); //term is not neccessearily FSN
@@ -35,10 +35,10 @@ export default Ember.Component.extend({
                         } else {
                             this.set('conceptFsn', concept.fsn);
                         }
+                    })
+                    .catch(() => {
+                        this.set('conceptFsn', conceptId);
                     });
-                    // .catch(() => {
-                    //     this.set('conceptFsn', conceptId);
-                    // });
             }
         }
     },
