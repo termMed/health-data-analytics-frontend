@@ -4,6 +4,7 @@ import {isAjaxError, isNotFoundError, isForbiddenError} from 'ember-ajax/errors'
 export default Ember.Component.extend({
     ajax: Ember.inject.service(),
     conceptFsn: null,
+    conceptFsnTerm: null,
     conceptId: null,
     filteredList: null,
     mrcmType: null,
