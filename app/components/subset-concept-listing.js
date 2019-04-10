@@ -14,6 +14,8 @@ export default Ember.Component.extend({
     init: function() {
         this._super();
         let conceptId = this.get('conceptId');
+        let conceptFsn = this.get('conceptFsn');
+        let conceptFsnTerm = this.get('conceptFsnTerm');
         let mrcmType = this.get('mrcmType');
         let mrcmTarget = this.get('mrcmTarget');
         let typeId = this.get('typeId');
