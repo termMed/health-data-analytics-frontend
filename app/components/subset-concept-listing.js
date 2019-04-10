@@ -175,12 +175,12 @@ export default Ember.Component.extend({
             }
         },
         choose(concept) {
-            this.set('conceptFsn', concept.fsn);
+            this.set('conceptFsn', concept.id);
             this.set('conceptFsnTerm', concept.fsn.term);
             this.set('conceptId', concept.id);
             this.set('filteredList', null);
             // Call parent choose action
-            this.get('choose')(this.set('filter', concept.fsn));
+            this.get('choose')(this.set('filter', concept.id));
         }
     }
 });
