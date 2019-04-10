@@ -180,7 +180,7 @@ export default Ember.Component.extend({
             this.set('conceptId', concept.id);
             this.set('filteredList', null);
             // Call parent choose action
-            this.get('choose')(this.set('filter', concept.id));
+            this.get('choose')(this.set('filter', concept.fsn));
         }
     }
 });
