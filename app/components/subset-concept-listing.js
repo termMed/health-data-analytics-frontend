@@ -27,17 +27,17 @@ export default Ember.Component.extend({
                             i = 0;
                             while(i < concept.descriptions.length()){
                                 if(concept.descriptions[i].term == term){
-                                    this.set('conceptFsnTerm', term);
+                                    this.set('conceptFsn', term); //term is not neccessearily FSN
                                 }
                                 i++;
                             }
                         } else {
                             this.set('conceptFsn', concept.fsn);
                         }
-                    })
-                    .catch(() => {
-                        this.set('conceptFsn', conceptId);
                     });
+                    // .catch(() => {
+                    //     this.set('conceptFsn', conceptId);
+                    // });
             }
         }
     },
