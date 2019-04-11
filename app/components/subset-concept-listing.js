@@ -13,17 +13,26 @@ export default Ember.Component.extend({
     init: function() {
         this._super();
         let conceptId = this.get('conceptId');
-        let conceptFsn = this.get('conceptFsn');
         let mrcmType = this.get('mrcmType');
         let mrcmTarget = this.get('mrcmTarget');
         let typeId = this.get('typeId');
         if (!Ember.isBlank(conceptId)) {
             if(conceptId !== '*'){
                 console.log("concept list component, fetching fsn " + conceptId);
-                console.log(conceptFsn);
                 this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
                     .then((concept) => {
-                        this.set('conceptFsn', concept.fsn);
+                        if(concept.descriptions.length > 0){
+                            let i = 0;
+                            let found = false;
+                            while(i < concept.descriptions.length && found == false){
+                                if(concept.descriptions[i].lang == 'es' && concept.descriptions[i].type == 'FSN'){
+                                    this.set('conceptFsn', concept.descriptions[i].term)
+                                }
+                                i++;
+                            }
+                        } else {
+                            this.set('conceptFsn', concept.fsn);
+                        }
                     })
                     .catch(() => {
                         this.set('conceptFsn', conceptId);
@@ -161,7 +170,7 @@ export default Ember.Component.extend({
             this.set('conceptId', concept.id);
             this.set('filteredList', null);
             // Call parent choose action
-            this.get('choose')(this.set('filter', concept.fsn));
+            this.get('choose')(this.set('filter', concept.id));
 
         }
     }
