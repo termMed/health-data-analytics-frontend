@@ -17,6 +17,8 @@ export default Ember.Component.extend({
         let mrcmTarget = this.get('mrcmTarget');
         let typeId = this.get('typeId');
         if (!Ember.isBlank(conceptId)) {
+            console.log(this.get('conceptFsn'));
+            console.log(this.get('conceptId'));
             if(conceptId !== '*'){
                 console.log("concept list component, fetching fsn " + conceptId);
                 this.get('ajax').request('/health-analytics-api/concepts/' + conceptId)
@@ -158,8 +160,6 @@ export default Ember.Component.extend({
             this.set('conceptFsn', concept.fsn);
             this.set('conceptId', concept.id);
             this.set('filteredList', null);
-            console.log(this.get('conceptFsn'));
-            console.log(this.get('conceptId'));
             // Call parent choose action
             this.get('choose')(this.set('filter', concept.id));
         }
