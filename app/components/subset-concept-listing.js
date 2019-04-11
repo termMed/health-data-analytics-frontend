@@ -59,8 +59,8 @@ export default Ember.Component.extend({
                                 any.subset = true;
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
-                                list.items= filteredSubsets.concat(result.items);
-                                scope.set('filteredList', list);
+                                list.items= filteredSubsets.concat(filteredConcepts);
+                                scope.set('filteredConcepts', list);
                             });
                         }
                         else if(scope.get('mrcmType') && scope.get('parentId') === null || scope.get('parentId') === '*'){
