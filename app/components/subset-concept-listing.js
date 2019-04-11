@@ -13,14 +13,14 @@ export default Ember.Component.extend({
     init: function() {
         this._super();
         let conceptId = this.get('conceptId');
+        let conceptFsn = this.get('conceptFsn')
         let mrcmType = this.get('mrcmType');
         let mrcmTarget = this.get('mrcmTarget');
         let typeId = this.get('typeId');
         if (!Ember.isBlank(conceptId)) {
-            console.log(this.get('conceptFsn'));
-            console.log(this.get('conceptId'));
             if(conceptId !== '*'){
                 console.log("concept list component, fetching fsn " + conceptId);
+                console.log(conceptFsn);
                 this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
                     .then((concept) => {
                         this.set('conceptFsn', concept.fsn);
@@ -162,6 +162,7 @@ export default Ember.Component.extend({
             this.set('filteredList', null);
             // Call parent choose action
             this.get('choose')(this.set('filter', concept.id));
+
         }
     }
 });
