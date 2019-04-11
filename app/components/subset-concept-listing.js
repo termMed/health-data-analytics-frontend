@@ -44,7 +44,7 @@ export default Ember.Component.extend({
         autoComplete(param) {
             var run = function(scope) {
                     if(param !== "" && param !== '*' && scope.get('mrcmType') === null && (scope.get('typeId') === null || scope.get('typeId') === '*')) {
-                            scope.get('ajax').request('http://snow-uy.termspace.com/MAIN/SNOEMDCT-ES/SNOMEDCT-URU/concepts/term='+ param +'&offset=0&limit=50')
+                            scope.get('ajax').request('/find/MAIN/SNOEMDCT-ES/SNOMEDCT-URU/concepts/term='+ param +'&offset=0&limit=50')
                                 .then((result) => {
                                 var list = {};
                                 var any = {};
