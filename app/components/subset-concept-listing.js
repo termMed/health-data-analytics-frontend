@@ -13,7 +13,7 @@ export default Ember.Component.extend({
     init: function() {
         this._super();
         let conceptId = this.get('conceptId');
-        let conceptFsn = this.get('conceptFsn')
+        let conceptFsn = this.get('conceptFsn');
         let mrcmType = this.get('mrcmType');
         let mrcmTarget = this.get('mrcmTarget');
         let typeId = this.get('typeId');
@@ -161,7 +161,7 @@ export default Ember.Component.extend({
             this.set('conceptId', concept.id);
             this.set('filteredList', null);
             // Call parent choose action
-            this.get('choose')(this.set('filter', concept.id));
+            this.get('choose')(this.set('filter', concept.fsn));
 
         }
     }
