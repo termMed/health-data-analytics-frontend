@@ -46,6 +46,12 @@ export default Ember.Component.extend({
                     if(param !== "" && param !== '*' && scope.get('mrcmType') === null && (scope.get('typeId') === null || scope.get('typeId') === '*')) {
                             scope.get('ajax').request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts?term='+ param +'&offset=0&limit=50')
                                 .then((result) => {
+                                var filteredConcepts = [];
+                                result.items.forEach(function(item){
+                                    if(item.fsn.toLowerCase().indexOf(param.toLowerCase()) !== -1){
+                                        filteredConcepts.push(item);
+                                    }
+                                });
                                 var list = {};
                                 var any = {};
                                 any.fsn = "Any";
