@@ -158,8 +158,8 @@ export default Ember.Component.extend({
             this.set('conceptFsn', concept.fsn);
             this.set('conceptId', concept.id);
             this.set('filteredList', null);
-            console.log(concept.fsn);
-            console.log(concept.id);
+            console.log(this.get('conceptFsn'));
+            console.log(this.get('conceptId'));
             // Call parent choose action
             this.get('choose')(this.set('filter', concept.id));
         }
