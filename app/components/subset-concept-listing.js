@@ -21,7 +21,7 @@ export default Ember.Component.extend({
             console.log(this.get('conceptId'));
             if(conceptId !== '*'){
                 console.log("concept list component, fetching fsn " + conceptId);
-                this.get('ajax').request('/health-analytics-api/concepts/' + conceptId)
+                this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
                     .then((concept) => {
                         this.set('conceptFsn', concept.fsn);
                     })
