@@ -49,6 +49,7 @@ export default Ember.Component.extend({
                                     var filteredAttrs = [];
                                     result.items.forEach(function(item){
                                         if(item.fsn.term.toLowerCase().indexOf(param.toLowerCase()) !== -1){
+                                            item.fsn = item.fsn.term;
                                             filteredAttrs.push(item);
                                         }
                                     });
