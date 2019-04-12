@@ -60,7 +60,7 @@ export default Ember.Component.extend({
                                     any.subset = true;
                                     var filteredSubsets = [];
                                     filteredSubsets.push(any);
-                                    var uniques;
+                                    var uniques = [];
                                     filteredSubsets.concat(filteredAttrs).forEach(function(value, index, arr){
                                         var j = 0;
                                         var isPresent = false;
@@ -70,7 +70,7 @@ export default Ember.Component.extend({
                                             }
                                             j++;
                                         }
-                                        if(!isPresent){
+                                        if(isPresent == false){
                                             uniques.push(value);
                                         }
                                     })
