@@ -183,7 +183,7 @@ export default Ember.Component.extend({
             this.get('choose')(this.set('filter', concept.id));
 
         },
-        removeDups(arr) {
+        removeDuplicates(arr) {
             let unique = {};
             arr.forEach(function(i) {
               if(!unique[i]) {
