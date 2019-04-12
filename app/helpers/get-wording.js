@@ -9,67 +9,67 @@ export function getWording(typeId) {
         var useType = typeId[1];
         if(conceptType === finding && useType === "past")
             {
-                return "had finding";
+                return "tuvo hallazgo";
             }
         else if(conceptType === finding && useType === "and")
             {
-                return "developed finding";
+                return "desarrolló hallazgo";
             }
         else if(conceptType === finding && useType === "present")
             {
-                return "have finding";
+                return "tiene hallazgo";
             }
         else if(conceptType === finding && useType === "verb")
             {
-                return "developing finding";
+                return "desarrollando hallazgo";
             }
         else if(conceptType === disorder && useType === "past")
             {
-                return "had";
+                return "tuvo";
             }
         else if(conceptType === disorder && useType === "and")
             {
-                return "developed";
+                return "desarrolló";
             }
         else if(conceptType === disorder && useType === "present")
             {
-                return "have";
+                return "tiene";
             }
         else if(conceptType === disorder && useType === "verb")
             {
-                return "developing";
+                return "desarrollando";
             }
         else if(conceptType === product && useType === "past")
             {
-                return "took";
+                return "tomó";
             }
         else if(conceptType === product && useType === "and")
             {
-                return "had taken";
+                return "había tomado";
             }
         else if(conceptType === product && useType === "present")
             {
-                return "take";
+                return "toma";
             }
         else if(conceptType === product && useType === "verb")
             {
-                return "taking";
+                return "tomando";
             }
         else if(conceptType === procedure && useType === "past")
             {
-                return "had undergone";
+                return "había sufrido";
             }
         else if(conceptType === procedure && useType === "and")
             {
-                return "also underwent";
+                return "tambien sufrió";
             }
         else if(conceptType === procedure && useType === "present")
             {
-                return "underwent";
+                return "sufrió";
             }
         else if(conceptType === procedure && useType === "verb")
             {
-                return "undergoing";
+                return "sufriendo";
             }
         else{return "";}
 }
