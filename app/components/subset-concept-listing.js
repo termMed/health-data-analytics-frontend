@@ -61,11 +61,12 @@ export default Ember.Component.extend({
                                     var filteredSubsets = [];
                                     filteredSubsets.push(any);
                                     var uniques = [];
-                                    filteredSubsets.concat(filteredAttrs).forEach(function(value, index, arr){
+                                    var copy = filteredSubsets.concat(filteredAttrs);
+                                    copy.forEach(function(value, index, arr){
                                         var j = 0;
                                         var isPresent = false;
                                         while(j < uniques.length){
-                                            if(unique[j] == value){
+                                            if(unique[j] === value){
                                                 isPresent = true;
                                             }
                                             j++;
