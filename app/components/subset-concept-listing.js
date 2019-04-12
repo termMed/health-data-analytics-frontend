@@ -66,7 +66,7 @@ export default Ember.Component.extend({
                                         var j = 0;
                                         var isPresent = false;
                                         while(j < uniques.length){
-                                            if(unique[j] === value){
+                                            if(uniques[j] === value){
                                                 isPresent = true;
                                             }
                                             j++;
