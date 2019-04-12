@@ -10,15 +10,6 @@ export default Ember.Component.extend({
     mrcmTarget: null,
     parentId: null,
     typeId: null,
-    removeDuplicates(arr) {
-        let unique = {};
-        arr.forEach(function(i) {
-          if(!unique[i]) {
-            unique[i] = true;
-          }
-        });
-        return Object.keys(unique);
-    },
     init: function() {
         this._super();
         let conceptId = this.get('conceptId');
@@ -70,8 +61,13 @@ export default Ember.Component.extend({
                                     var filteredSubsets = [];
                                     filteredSubsets.push(any);
                                     var i = 0;
-                                    while(i < filtered)
-                                    list.items = removeDuplicates(filteredSubsets.concat(filteredAttrs));
+                                    var unique = {};
+                                    filteredSubsets.concat(filteredAttrs).forEach(function(i) {
+                                      if(!unique[i]) {
+                                        unique[i] = true;
+                                      }
+                                    });
+                                    list.items = Object.keys(unique);
                                     console.log(list);
                                     scope.set('filteredList', list);
                             });
