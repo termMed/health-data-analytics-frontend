@@ -60,8 +60,7 @@ export default Ember.Component.extend({
                                     any.subset = true;
                                     var filteredSubsets = [];
                                     filteredSubsets.push(any);
-                                    var unique = [...new Set(filteredSubsets.concat(filteredAttrs))];
-                                    list.items = unique;
+                                    list.items= Array.from(new Set(filteredSubsets.concat(filteredAttrs)));
                                     console.log(list);
                                     scope.set('filteredList', list);
                             });
@@ -82,8 +81,7 @@ export default Ember.Component.extend({
                                 any.subset = true;
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
-                                var unique = [...new Set(filteredSubsets.concat(filteredAttrs))];
-                                list.items = unique;
+                                list.items= Array.from(new Set(filteredSubsets.concat(filteredAttrs)));
                                 console.log(list);
                                 scope.set('filteredList', list);
                             }).catch(function(response, jqXHR, payload) {
@@ -127,9 +125,7 @@ export default Ember.Component.extend({
                                 any.subset = true;
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
-                                var unique = [...new Set(filteredSubsets.concat(filteredAttrs))];
-                                list.items = unique;
-                                console.log(list);
+                                list.items= Array.from(new Set(filteredSubsets.concat(filteredAttrs)));
                                 scope.set('filteredList', list);
                             });
                         }
@@ -151,8 +147,7 @@ export default Ember.Component.extend({
                                 any.subset = true;
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
-                                var unique = [...new Set(filteredSubsets.concat(filteredAttrs))];
-                                list.items = unique;
+                                list.items= Array.from(new Set(filteredSubsets.concat(filteredAttrs)));
                                 console.log(list);
                                 scope.set('filteredList', list);
                             }).catch(function(error) {
