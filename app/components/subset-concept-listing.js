@@ -62,11 +62,11 @@ export default Ember.Component.extend({
                                     filteredSubsets.push(any);
                                     var uniques = [];
                                     var copy = filteredSubsets.concat(filteredAttrs);
-                                    copy.forEach(function(value, index, arr){
+                                    copy.forEach(function(value){
                                         var j = 0;
                                         var isPresent = false;
                                         while(j < uniques.length){
-                                            if(uniques[j] === value){
+                                            if(JSON.stringify(uniques[j]) === JSON.stringify(value)){
                                                 isPresent = true;
                                             }
                                             j++;
@@ -74,7 +74,7 @@ export default Ember.Component.extend({
                                         if(isPresent == false){
                                             uniques.push(value);
                                         }
-                                    })
+                                    });
                                     list.items= uniques;
                                     console.log(list);
                                     scope.set('filteredList', list);
