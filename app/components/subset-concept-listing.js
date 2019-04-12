@@ -60,7 +60,21 @@ export default Ember.Component.extend({
                                     any.subset = true;
                                     var filteredSubsets = [];
                                     filteredSubsets.push(any);
-                                    list.items= Array.from(new Set(filteredSubsets.concat(filteredAttrs)));
+                                    var uniques;
+                                    filteredSubsets.concat(filteredAttrs).forEach(function(value, index, arr){
+                                        var j = 0;
+                                        var isPresent = false;
+                                        while(j < uniques.length){
+                                            if(unique[j] == value){
+                                                isPresent = true;
+                                            }
+                                            j++;
+                                        }
+                                        if(!isPresent){
+                                            uniques.push(value);
+                                        }
+                                    })
+                                    list.items= uniques;
                                     console.log(list);
                                     scope.set('filteredList', list);
                             });
@@ -81,7 +95,7 @@ export default Ember.Component.extend({
                                 any.subset = true;
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
-                                list.items= Array.from(new Set(filteredSubsets.concat(filteredAttrs)));
+                                list.items= filteredSubsets.concat(filteredAttrs);
                                 console.log(list);
                                 scope.set('filteredList', list);
                             }).catch(function(response, jqXHR, payload) {
@@ -125,7 +139,7 @@ export default Ember.Component.extend({
                                 any.subset = true;
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
-                                list.items= Array.from(new Set(filteredSubsets.concat(filteredAttrs)));
+                                list.items= filteredSubsets.concat(filteredAttrs);
                                 scope.set('filteredList', list);
                             });
                         }
@@ -147,7 +161,7 @@ export default Ember.Component.extend({
                                 any.subset = true;
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
-                                list.items= Array.from(new Set(filteredSubsets.concat(filteredAttrs)));
+                                list.items= filteredSubsets.concat(filteredAttrs);
                                 console.log(list);
                                 scope.set('filteredList', list);
                             }).catch(function(error) {
