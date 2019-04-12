@@ -60,14 +60,8 @@ export default Ember.Component.extend({
                                     any.subset = true;
                                     var filteredSubsets = [];
                                     filteredSubsets.push(any);
-                                    var i = 0;
-                                    var unique = {};
-                                    filteredSubsets.concat(filteredAttrs).forEach(function(i) {
-                                      if(!unique[i]) {
-                                        unique[i] = true;
-                                      }
-                                    });
-                                    list.items = Object.keys(unique);
+                                    var unique = [...new Set(filteredSubsets.concat(filteredAttrs))];
+                                    list.items = unique;
                                     console.log(list);
                                     scope.set('filteredList', list);
                             });
@@ -88,7 +82,8 @@ export default Ember.Component.extend({
                                 any.subset = true;
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
-                                list.items = removeDuplicates(filteredSubsets.concat(filteredAttrs));
+                                var unique = [...new Set(filteredSubsets.concat(filteredAttrs))];
+                                list.items = unique;
                                 console.log(list);
                                 scope.set('filteredList', list);
                             }).catch(function(response, jqXHR, payload) {
@@ -132,7 +127,9 @@ export default Ember.Component.extend({
                                 any.subset = true;
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
-                                list.items = removeDuplicates(filteredSubsets.concat(filteredAttrs));
+                                var unique = [...new Set(filteredSubsets.concat(filteredAttrs))];
+                                list.items = unique;
+                                console.log(list);
                                 scope.set('filteredList', list);
                             });
                         }
@@ -154,7 +151,8 @@ export default Ember.Component.extend({
                                 any.subset = true;
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
-                                list.items = removeDuplicates(filteredSubsets.concat(filteredAttrs));
+                                var unique = [...new Set(filteredSubsets.concat(filteredAttrs))];
+                                list.items = unique;
                                 console.log(list);
                                 scope.set('filteredList', list);
                             }).catch(function(error) {
@@ -187,6 +185,6 @@ export default Ember.Component.extend({
             // Call parent choose action
             this.get('choose')(this.set('filter', concept.id));
 
-        }          
+        }
     }
 });
