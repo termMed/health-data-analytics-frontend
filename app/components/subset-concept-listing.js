@@ -10,6 +10,15 @@ export default Ember.Component.extend({
     mrcmTarget: null,
     parentId: null,
     typeId: null,
+    removeDuplicates(arr) {
+        let unique = {};
+        arr.forEach(function(i) {
+          if(!unique[i]) {
+            unique[i] = true;
+          }
+        });
+        return Object.keys(unique);
+    },
     init: function() {
         this._super();
         let conceptId = this.get('conceptId');
@@ -182,16 +191,6 @@ export default Ember.Component.extend({
             // Call parent choose action
             this.get('choose')(this.set('filter', concept.id));
 
-        },
-        removeDuplicates(arr) {
-            let unique = {};
-            arr.forEach(function(i) {
-              if(!unique[i]) {
-                unique[i] = true;
-              }
-            });
-            return Object.keys(unique);
-        }
-          
+        }          
     }
 });
