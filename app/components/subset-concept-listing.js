@@ -55,7 +55,7 @@ export default Ember.Component.extend({
                                     });
                                     var list = {};
                                     var any = {};
-                                    any.fsn = "Any";
+                                    any.fsn = "Cualquiera";
                                     any.id = "*";
                                     any.subset = true;
                                     var filteredSubsets = [];
@@ -91,7 +91,7 @@ export default Ember.Component.extend({
                                 });
                                 var list = {};
                                 var any = {};
-                                any.fsn = "Any";
+                                any.fsn = "Cualquiera";
                                 any.id = "*";
                                 any.subset = true;
                                 var filteredSubsets = [];
@@ -135,7 +135,7 @@ export default Ember.Component.extend({
                                 });
                                 var list = {};
                                 var any = {};
-                                any.fsn = "Any";
+                                any.fsn = "Cualquiera";
                                 any.id = "*";
                                 any.subset = true;
                                 var filteredSubsets = [];
@@ -157,7 +157,7 @@ export default Ember.Component.extend({
                                 });
                                 var list = {};
                                 var any = {};
-                                any.fsn = "Any";
+                                any.fsn = "Cualquiera";
                                 any.id = "*";
                                 any.subset = true;
                                 var filteredSubsets = [];
