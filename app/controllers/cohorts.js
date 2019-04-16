@@ -204,7 +204,7 @@ export default Ember.Controller.extend({
                                 item.encounters.forEach(function(encounter){
                                     console.log('Iterating encounters')
                                     var conceptId = encounter.conceptId;
-                                    req.get('ajax').request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
+                                    req.request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
                                         console.log('Requesting to Snowstorm, conceptId: ' + conceptId);
                                         result.conceptTerm = encounter.pt.term;
                                     }).catch(function(error){
