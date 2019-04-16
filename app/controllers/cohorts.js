@@ -190,7 +190,7 @@ export default Ember.Controller.extend({
                                     var conceptId = encounter.conceptId;
                                     req.request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
                                         Ember.set('encounter.conceptTerm', result.pt.term);
-                                        console.log(result.pt.term);
+                                        console.log(encounter.conceptTerm);
                                     }).catch(function(error){
                                         Ember.set(loading, false);
                                         Ember.set(error, 'There has been a problem with your request - please check your input.');
