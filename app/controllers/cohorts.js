@@ -203,14 +203,15 @@ export default Ember.Controller.extend({
                                 item.encounters.forEach(function(encounter){
                                     console.log('Iterating encounters')
                                     var conceptId = encounter.conceptId;
-                                    var translation = this.get('ajax').request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
+                                    encounter.get('ajax').request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
                                         console.log('Requesting to Snowstorm, conceptId: ' + conceptId);
                                         result.conceptTerm = encounter.pt.term;
                                     }).catch(function(error){
                                         Ember.set(loading, false);
                                         Ember.set(error, 'There has been a problem with your request - please check your input.');
-                                    })
-                                })
+                                    });
+                                });
+
                             });
                             this.set('model.cohortData', result);
                         }).catch(function(error) {
