@@ -182,6 +182,23 @@ export default Ember.Controller.extend({
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify(postData)})
                         .then((result) => {
+                            var req = this.get('ajax');
+                            result.content.forEach(function(item){
+                                console.log('Iterating content');
+                                item.encounters.forEach(function(encounter){
+                                    console.log('Iterating encounters')
+                                    var conceptId = encounter.conceptId;
+                                    req.request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
+                                        // encounter.conceptTerm = result.pt.term;
+                                        console.log(result.pt.term);
+                                    }).catch(function(error){
+                                        Ember.set(loading, false);
+                                        Ember.set(error, 'There has been a problem with your request - please check your input.');
+                                    });
+                                });
+
+                            });
+
                             inclusionCriteria.forEach(function (item){
                                 var inclusionCriteriaData = {};
                                 console.log(item);
@@ -197,23 +214,8 @@ export default Ember.Controller.extend({
                                     inclusionCriteriaArray.push(inclusionCriteriaData);
                             });
                             
-                            this.set('loading', false); 
-                            var req = this.get('ajax');
-                            result.content.forEach(function(item){
-                                console.log('Iterating content');
-                                item.encounters.forEach(function(encounter){
-                                    console.log('Iterating encounters')
-                                    var conceptId = encounter.conceptId;
-                                    req.request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
-                                        encounter.conceptTerm = result.pt.term;
-                                        console.log(result.conce)
-                                    }).catch(function(error){
-                                        Ember.set(loading, false);
-                                        Ember.set(error, 'There has been a problem with your request - please check your input.');
-                                    });
-                                });
 
-                            });
+                            this.set('loading', false); 
                             this.set('model.cohortData', result);
                         }).catch(function(error) {
                             if (isServerError(error)) {
