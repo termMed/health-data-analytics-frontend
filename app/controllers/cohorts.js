@@ -198,8 +198,18 @@ export default Ember.Controller.extend({
                             });
                             
                             this.set('loading', false); 
+                            result.content.forEach(function(item){
+                                item.encounters.forEach(function(encounter){
+                                    var conceptId = encounter.conceptId;
+                                    this.get('ajax').request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
+                                        encounter.conceptTerm = result.pt.term;
+                                    }).catch(function(error){
+                                        Ember.set(loading, false);
+                                        Ember.set(error, 'There has been a problem with your request - please check your input.');
+                                    })
+                                })
+                            })
                             this.set('model.cohortData', result);
-                            console.log(result);
                         }).catch(function(error) {
                             if (isServerError(error)) {
                                 Ember.set(loading, false);
