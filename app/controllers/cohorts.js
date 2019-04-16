@@ -205,8 +205,8 @@ export default Ember.Controller.extend({
                                     console.log('Iterating encounters')
                                     var conceptId = encounter.conceptId;
                                     req.request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
-                                        console.log('Requesting to Snowstorm, conceptId: ' + conceptId);
-                                        result.conceptTerm = encounter.pt.term;
+                                        encounter.conceptTerm = result.pt.term;
+                                        console.log(result.conce)
                                     }).catch(function(error){
                                         Ember.set(loading, false);
                                         Ember.set(error, 'There has been a problem with your request - please check your input.');
