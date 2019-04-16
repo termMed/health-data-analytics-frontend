@@ -199,6 +199,7 @@ export default Ember.Controller.extend({
                             
                             this.set('loading', false); 
                             this.set('model.cohortData', result);
+                            console.log(result);
                         }).catch(function(error) {
                             if (isServerError(error)) {
                                 Ember.set(loading, false);
