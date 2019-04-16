@@ -198,12 +198,13 @@ export default Ember.Controller.extend({
                             });
                             
                             this.set('loading', false); 
+                            var req = this.get('ajax');
                             result.content.forEach(function(item){
                                 console.log('Iterating content');
                                 item.encounters.forEach(function(encounter){
                                     console.log('Iterating encounters')
                                     var conceptId = encounter.conceptId;
-                                    encounter.get('ajax').request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
+                                    req.get('ajax').request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
                                         console.log('Requesting to Snowstorm, conceptId: ' + conceptId);
                                         result.conceptTerm = encounter.pt.term;
                                     }).catch(function(error){
