@@ -1,3 +1,7 @@
+Note about termMed's fork:
+- "spanish-translation" branch contains not just GUI translation, but also major changes to make it work with Snowstorm.
+
+
 # Health Data Analytics Frontend
 
 # Installation:
