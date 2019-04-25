@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
     actions: {
         addSubset(model) {
             var newSubset = {
+                // Spanish translation
                 name:"Nuevo Subconjunto",
                 description:"",
                 ecl:"",

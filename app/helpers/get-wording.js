@@ -7,6 +7,9 @@ export function getWording(typeId) {
         var procedure = "71388002";
         var conceptType = typeId[0];
         var useType = typeId[1];
+
+        //Spanish translations - PG
+
         if(conceptType === finding && useType === "past")
             {
                 return "tuvo/tuvieron";

@@ -1,112 +1,134 @@
 <h3 class="grey-border-bottom">Editando subconjunto: {{model.name}}</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-10 input-field" style="margin-left:10px;">
+            {{!-- Spanish translation - PG --}}
+            <div style="color: #9e9e9e; font-size:1rem; font-weight: bold;">Nombre del subconjunto</div>
+            {{input id="name-input" class="form-control" value=model.name type="text"}}
+        </div>
+        {{#each model.eclObjects as |eclObject index|}}
+        <div class="row col-md-12 eclGroup">
+            {{#if eclObject.operator}}
             <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-10 input-field" style="margin-left:10px;">
-                      <div style="color: #9e9e9e; font-size:1rem; font-weight: bold;">Nombre del subconjunto</div>
-                      {{input id="name-input" class="form-control" value=model.name type="text"}}
-                    </div>
-                        {{#each model.eclObjects as |eclObject index|}}
-                            <div class="row col-md-12 eclGroup">
-                                {{#if eclObject.operator}}
-                                    <div class="row">
-                                        <div class="col-md-5 col-md-offset-3">
-                                            <div style="color: #9e9e9e; font-size:1rem; font-weight: bold;">Operador</div>
-                                            <select onChange={{action (mut eclObject.operator) value="target.value"}} style="display: inline-block;">
-                                              {{#each model.operatorOptions as |opOption|}}
-                                                <option value={{opOption.value}} selected={{eq eclObject.operator opOption.value}}>{{opOption.name}}</option>
-                                              {{/each}}
-                                            </select>
-                                        </div>
-                                        <div class="col-md-1 col-md-offset-1">
-                                                <a class="waves-effect waves-light btn red" {{action "deleteFocusConcept" index model.eclObjects}}>Remover</a>
-                                            </div>
-                                    </div>
-                                    
-                                {{/if}}
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <div>
-                                          <div style="color: #9e9e9e; font-size:1rem; font-weight: bold;">Tipo</div>
-                                          <select onChange={{action (mut eclObject.ecl) value="target.value"}} style="display: inline-block;">
-                                              {{#each model.eclOption as |option|}}
-                                                <option value={{option.value}} selected={{eq eclObject.ecl option.value}}>{{option.value}}</option>
-                                              {{/each}}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div>
-                                            {{subset-concept-listing filter=eclObject.focusConcept.fsn conceptId=eclObject.focusConcept.id value=eclObject.focusConcept.fsn  title='Concepto foco'}}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <a class="waves-effect waves-light btn green" {{action "addRefinement" (mut eclObject.refinements)}}>Agregar refinamiento</a>
-                                    </div>
-                                </div>
-                                
-                                {{#if eclObject.refinements}}
-                                    {{#each eclObject.refinements as |refinement index|}}
-                                
-                                        <div class="col-md-12 row" style="margin:20px; margin-left:0px;">
-                                            <div class="col-md-1">
-                                                <div>
-                                                  <div style="color: #9e9e9e; font-size:1rem; font-weight: bold;">Tipo</div>
-                                                  <select onChange={{action (mut refinement.type.ecl) value="target.value"}} style="display: inline-block;">
-                                                      {{#each model.eclOption as |option|}}
-                                                        <option value={{option.value}} selected={{eq refinement.type.ecl option.value}}>{{option.value}}</option>
-                                                      {{/each}}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div>
-                                                    {{subset-concept-listing mrcmType=true parentId=eclObject.focusConcept.id filter=refinement.type.fsn conceptId=refinement.type.id value=refinement.type.fsn  title='Tipo de atributo'}}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <div>
-                                                  <div style="color: #9e9e9e; font-size:1rem; font-weight: bold;">Tipo</div>
-                                                  <select onChange={{action (mut refinement.target.ecl) value="target.value"}} style="display: inline-block;">
-                                                      {{#each model.eclOption as |option|}}
-                                                        <option value={{option.value}} selected={{eq refinement.target.ecl option.value}}>{{option.value}}</option>
-                                                      {{/each}}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div>
-                                                    {{subset-concept-listing mrcmTarget=true filter=refinement.target.fsn typeId=refinement.type.id conceptId=refinement.target.id value=refinement.target.fsn  title='Valor del atributo'}}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1 col-md-offset-1">
-                                                <a class="waves-effect waves-light btn red" {{action "deleteRefinement" index eclObject.refinements}}>Remover</a>
-                                            </div>
-                                            
-                                        </div>
-                                    {{/each}}
-                                {{else}}
-                                    
-                                {{/if}}
-                                
-                            </div>
+                <div class="col-md-5 col-md-offset-3">
+                    {{!-- Spanish translation - PG --}}
+                    <div style="color: #9e9e9e; font-size:1rem; font-weight: bold;">Operador</div>
+                    <select onChange={{action (mut eclObject.operator) value="target.value"}}
+                        style="display: inline-block;">
+                        {{#each model.operatorOptions as |opOption|}}
+                        <option value={{opOption.value}} selected={{eq eclObject.operator opOption.value}}>
+                            {{opOption.name}}</option>
                         {{/each}}
+                    </select>
+                </div>
+                <div class="col-md-1 col-md-offset-1">
+                    {{!-- Spanish translation - PG --}}
+                    <a class="waves-effect waves-light btn red"
+                        {{action "deleteFocusConcept" index model.eclObjects}}>Remover</a>
                 </div>
             </div>
-            
-            <div class="row col-md-12">
-                <div class="col-md-3 col-md-offset-1">
-                    <a class="waves-effect waves-light btn green" {{action "addEclObject"}}>Agregar consulta adicional</a>
+
+            {{/if}}
+            <div class="row">
+                <div class="col-md-1">
+                    <div>
+                        {{!-- Spanish translation - PG --}}
+                        <div style="color: #9e9e9e; font-size:1rem; font-weight: bold;">Tipo</div>
+                        <select onChange={{action (mut eclObject.ecl) value="target.value"}}
+                            style="display: inline-block;">
+                            {{#each model.eclOption as |option|}}
+                            <option value={{option.value}} selected={{eq eclObject.ecl option.value}}>{{option.value}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div>
                 </div>
-                <a class="waves-effect waves-light btn green col-md-2" {{action "saveSubset"}}>Guardar subconjunto</a>
+                <div class="col-md-8">
+                    <div>
+                        {{!-- Spanish translation - PG --}}
+                        {{subset-concept-listing filter=eclObject.focusConcept.fsn conceptId=eclObject.focusConcept.id value=eclObject.focusConcept.fsn  title='Concepto foco'}}
+                    </div>
+                </div>
                 <div class="col-md-2">
-                    <a class="waves-effect waves-light btn red" {{action "deleteSubset"}}>Borrar subconjunto</a>
+                    <a class="waves-effect waves-light btn green"
+                        {{!-- Spanish translation - PG --}}
+                        {{action "addRefinement" (mut eclObject.refinements)}}>Agregar refinamiento</a>
                 </div>
-                <br />
-                <div>
-                    <h3>{{model.eclstring}}</h3>
+            </div>
+
+            {{#if eclObject.refinements}}
+            {{#each eclObject.refinements as |refinement index|}}
+
+            <div class="col-md-12 row" style="margin:20px; margin-left:0px;">
+                <div class="col-md-1">
+                    <div>
+                        {{!-- Spanish translation - PG --}}
+                        <div style="color: #9e9e9e; font-size:1rem; font-weight: bold;">Tipo</div>
+                        <select onChange={{action (mut refinement.type.ecl) value="target.value"}}
+                            style="display: inline-block;">
+                            {{#each model.eclOption as |option|}}
+                            <option value={{option.value}} selected={{eq refinement.type.ecl option.value}}>
+                                {{option.value}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
                 </div>
-            </div> 
+                <div class="col-md-4">
+                    <div>
+                        {{!-- Spanish translation - PG --}}
+                        {{subset-concept-listing mrcmType=true parentId=eclObject.focusConcept.id filter=refinement.type.fsn conceptId=refinement.type.id value=refinement.type.fsn  title='Tipo de atributo'}}
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div>
+                        {{!-- Spanish translation - PG --}}
+                        <div style="color: #9e9e9e; font-size:1rem; font-weight: bold;">Tipo</div>
+                        <select onChange={{action (mut refinement.target.ecl) value="target.value"}}
+                            style="display: inline-block;">
+                            {{#each model.eclOption as |option|}}
+                            <option value={{option.value}} selected={{eq refinement.target.ecl option.value}}>
+                                {{option.value}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        {{!-- Spanish translation - PG --}}
+                        {{subset-concept-listing mrcmTarget=true filter=refinement.target.fsn typeId=refinement.type.id conceptId=refinement.target.id value=refinement.target.fsn  title='Valor del atributo'}}
+                    </div>
+                </div>
+                <div class="col-md-1 col-md-offset-1">
+                    <a class="waves-effect waves-light btn red"
+                        {{!-- Spanish translation - PG --}}
+                        {{action "deleteRefinement" index eclObject.refinements}}>Remover</a>
+                </div>
 
+            </div>
+            {{/each}}
+            {{else}}
 
+            {{/if}}
 
+        </div>
+        {{/each}}
+    </div>
+</div>
 
+<div class="row col-md-12">
+    <div class="col-md-3 col-md-offset-1">
+        {{!-- Spanish translation - PG --}}
+        <a class="waves-effect waves-light btn green" {{action "addEclObject"}}>Agregar consulta adicional</a>
+    </div>
+    {{!-- Spanish translation - PG --}}
+    <a class="waves-effect waves-light btn green col-md-2" {{action "saveSubset"}}>Guardar subconjunto</a>
+    <div class="col-md-2">
+    {{!-- Spanish translation - PG --}}
+        <a class="waves-effect waves-light btn red" {{action "deleteSubset"}}>Borrar subconjunto</a>
+    </div>
+    <br />
+    {{!-- Added ECL query - PG --}}
+    <div>
+        <h3>{{model.eclstring}}</h3>
+    </div>
+</div>

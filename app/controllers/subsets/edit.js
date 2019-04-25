@@ -101,6 +101,7 @@ export default Ember.Controller.extend({
                 ecl : ecl
             };
             var ecl_string = postData.ecl;
+            // Show ECL query made in GUI - PG
             this.set("model.eclstring", "Su consulta ECL fue: " + ecl_string);
 //            this.get('ajax').delete('/health-analytics-api/subsets/' + this.get("model.id"))
 //                .then(() => {

@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import {isAjaxError, isNotFoundError, isForbiddenError} from 'ember-ajax/errors';
 
+// Comments finished with 'PG' added by Patricio Gayol (termMed) to show modifications from original IHTSDO's code
+
 export default Ember.Component.extend({
     ajax: Ember.inject.service(),
     conceptFsn: null,
@@ -19,8 +21,10 @@ export default Ember.Component.extend({
         if (!Ember.isBlank(conceptId)) {
             if(conceptId !== '*'){
                 console.log("concept list component, fetching fsn " + conceptId);
+                // Changed to SNOWSTORM path - PG
                 this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
                     .then((concept) => {
+                        // First check for descriptions witn FSN in spanish - PG
                         if(concept.descriptions.length > 0){
                             let i = 0;
                             let found = false;
@@ -44,6 +48,7 @@ export default Ember.Component.extend({
         autoComplete(param) {
             var run = function(scope) {
                     if(param !== "" && param !== '*' && scope.get('mrcmType') === null && (scope.get('typeId') === null || scope.get('typeId') === '*')) {
+                            // Changed to SNOWSTORM path - PG
                             scope.get('ajax').request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts?term='+ param +'&offset=0&limit=50')
                                 .then((result) => {
                                     var filteredAttrs = [];
@@ -55,11 +60,13 @@ export default Ember.Component.extend({
                                     });
                                     var list = {};
                                     var any = {};
+                                    //Spanish translation
                                     any.fsn = "Cualquiera";
                                     any.id = "*";
                                     any.subset = true;
                                     var filteredSubsets = [];
                                     filteredSubsets.push(any);
+                                    // Delete duplicates
                                     var uniques = [];
                                     var copy = filteredSubsets.concat(filteredAttrs);
                                     copy.forEach(function(value){
@@ -97,7 +104,6 @@ export default Ember.Component.extend({
                                 var filteredSubsets = [];
                                 filteredSubsets.push(any);
                                 list.items= filteredSubsets.concat(filteredAttrs);
-                                console.log(list);
                                 scope.set('filteredList', list);
                             }).catch(function(response, jqXHR, payload) {
                                 console.log(response);
@@ -123,6 +129,7 @@ export default Ember.Component.extend({
                               });
                         }
                         else if(scope.get('mrcmTarget') && scope.get('typeId') !== null && scope.get('typeId') !== '*'){
+                            // Changed to SNOWSTORM path - PG
                             scope.get('ajax').request('/mrcm/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/attribute-values/'+scope.get('typeId')+'?termPrefix='+ param + '*&expand=fsn()&offset=0&limit=50')
                                 .then((result) => {
                                 var filteredAttrs = [];
@@ -135,6 +142,7 @@ export default Ember.Component.extend({
                                 });
                                 var list = {};
                                 var any = {};
+                                // Spanish translation
                                 any.fsn = "Cualquiera";
                                 any.id = "*";
                                 any.subset = true;
@@ -145,6 +153,7 @@ export default Ember.Component.extend({
                             });
                         }
                         else if(scope.get('mrcmType') && scope.get('parentId')){
+                            // Changed to SNOWSTORM path
                             scope.get('ajax').request('/mrcm/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/domain-attributes?parentIds=' + scope.get('parentId') + '&expand=fsn()&offset=0&limit=50',)
                                 .then((result) => {
                                 var filteredAttrs = [];
@@ -157,6 +166,7 @@ export default Ember.Component.extend({
                                 });
                                 var list = {};
                                 var any = {};
+                                // Spanish translation
                                 any.fsn = "Cualquiera";
                                 any.id = "*";
                                 any.subset = true;

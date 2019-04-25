@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import {isAjaxError, isNotFoundError, isForbiddenError, isServerError} from 'ember-ajax/errors';
 
+// Comments finished with 'PG' added by Patricio Gayol (termMed) to show modifications from original IHTSDO's code
+
 export default Ember.Controller.extend({
     ajax: Ember.inject.service(),
     loading: false,
@@ -73,7 +75,7 @@ export default Ember.Controller.extend({
             let primaryExposureECL = this.toECL(primaryExposure);
             this.set('model.gender', $('#genderSelect').find(":selected").text());
             if(this.get('model.gender') !== null && this.get('model.gender') !== undefined){
-                //Changes to make it work in spanish translation
+                //Changes to make it work with spanish translation - PG
                 if(this.get('model.gender') == 'Masculino'){
                     this.set('model.gender', 'Male');
                 }
@@ -188,6 +190,7 @@ export default Ember.Controller.extend({
                                 item.encounters.forEach(function(encounter){
                                     console.log('Iterating encounters')
                                     var conceptId = encounter.conceptId;
+                                    // Changed to SNOWSTORM path - PG
                                     req.request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId).then((result) => {
                                         Ember.set(encounter, 'conceptTerm', result.pt.term);
                                         console.log(encounter.conceptTerm);
