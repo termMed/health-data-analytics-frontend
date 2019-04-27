@@ -2,7 +2,7 @@
 # Health Data Analytics Frontend
 
 # Note about termMed's fork:
-- This is a form from original IHTSDO'S health-data-analytics-frontend project. See: https://github.com/IHTSDO/health-data-analytics-frontend
+- This is a fork from original IHTSDO'S health-data-analytics-frontend project. See: https://github.com/IHTSDO/health-data-analytics-frontend
 - "spanish-translation" branch contains not just GUI translation, but also major changes to make it work with Snowstorm.
 - Comments finished with 'PG' were added by Patricio Gayol (termMed) to show modifications from original IHTSDO's code.
 - In this file you can find the actual configuration of NGINX, with some changes from original project's configuration. Accept-Language is set to 'es-URU' since Snowstorm requires the Language Header to fetch concepts in spanish.
