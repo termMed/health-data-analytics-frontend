@@ -175,6 +175,23 @@ export default Ember.Controller.extend({
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify(postData)})
                         .then((result) => {
+                            var req = this.get('ajax');
+                            result.content.forEach(function(item){
+                                console.log('Iterating content');
+                                item.encounters.forEach(function(encounter){
+                                    console.log('Iterating encounters')
+                                    var conceptId = encounter.conceptId;
+                                    // Changed to SNOWSTORM path - PG
+                                    req.request('/find/MAIN/CA-EN/CA-FR/concepts/' + conceptId).then((result) => {
+                                        // Change to set encounter term in spanish using Snowstorm data model - PG 
+                                        Ember.set(encounter, 'conceptTerm', result.pt.term);
+                                        console.log(encounter.conceptTerm);
+                                    }).catch(function(error){
+                                        Ember.set(loading, false);
+                                        Ember.set(error, 'There has been a problem with your request - please check your input.');
+                                    });
+                                });
+                            });
                             inclusionCriteria.forEach(function (item){
                                 var inclusionCriteriaData = {};
                                 console.log(item);

@@ -100,6 +100,9 @@ export default Ember.Controller.extend({
                 eclModel : JSON.stringify(this.get("model.eclObjects")),
                 ecl : ecl
             };
+            // Show ECL query made in GUI - PG
+            var ecl_string = postData.ecl;
+            this.set("model.eclstring", "You ECL query was: " + ecl_string);
 //            this.get('ajax').delete('/health-analytics-api/subsets/' + this.get("model.id"))
 //                .then(() => {
 //                });

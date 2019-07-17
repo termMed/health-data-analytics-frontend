@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export function getWording(typeId) {
+        var finding = "404684003"; //PG
         var disorder = "64572001";
         var product = "373873005";
         var procedure = "71388002";
