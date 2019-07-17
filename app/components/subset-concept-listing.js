@@ -22,7 +22,7 @@ export default Ember.Component.extend({
             if(conceptId !== '*'){
                 console.log("concept list component, fetching fsn " + conceptId);
                 // Changed to SNOWSTORM path - PG
-                this.get('ajax').request('/browser/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts/' + conceptId)
+                this.get('ajax').request('/browser/MAIN/CA-EN/CA-FR/concepts/' + conceptId)
                     .then((concept) => {
                         // First check for descriptions witn FSN in spanish - PG
                         if(concept.descriptions.length > 0){
@@ -49,7 +49,7 @@ export default Ember.Component.extend({
             var run = function(scope) {
                     if(param !== "" && param !== '*' && scope.get('mrcmType') === null && (scope.get('typeId') === null || scope.get('typeId') === '*')) {
                             // Changed to SNOWSTORM path - PG
-                            scope.get('ajax').request('/find/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/concepts?term='+ param +'&offset=0&limit=50')
+                            scope.get('ajax').request('/find/MAIN/CA-EN/CA-FR/concepts?term='+ param +'&offset=0&limit=50')
                                 .then((result) => {
                                     var filteredAttrs = [];
                                     result.items.forEach(function(item){
@@ -130,7 +130,7 @@ export default Ember.Component.extend({
                         }
                         else if(scope.get('mrcmTarget') && scope.get('typeId') !== null && scope.get('typeId') !== '*'){
                             // Changed to SNOWSTORM path - PG
-                            scope.get('ajax').request('/mrcm/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/attribute-values/'+scope.get('typeId')+'?termPrefix='+ param + '*&expand=fsn()&offset=0&limit=50')
+                            scope.get('ajax').request('/mrcm/MAIN/CA-EN/CA-FR/attribute-values/'+scope.get('typeId')+'?termPrefix='+ param + '*&expand=fsn()&offset=0&limit=50')
                                 .then((result) => {
                                 var filteredAttrs = [];
                                 result.items.forEach(function(item){
@@ -154,7 +154,7 @@ export default Ember.Component.extend({
                         }
                         else if(scope.get('mrcmType') && scope.get('parentId')){
                             // Changed to SNOWSTORM path
-                            scope.get('ajax').request('/mrcm/MAIN/SNOMEDCT-ES/SNOMEDCT-URU/domain-attributes?parentIds=' + scope.get('parentId') + '&expand=fsn()&offset=0&limit=50',)
+                            scope.get('ajax').request('/mrcm/MAIN/CA-EN/CA-FR/domain-attributes?parentIds=' + scope.get('parentId') + '&expand=fsn()&offset=0&limit=50',)
                                 .then((result) => {
                                 var filteredAttrs = [];
                                 result.items.forEach(function(item){
