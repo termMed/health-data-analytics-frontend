@@ -25,18 +25,19 @@ export default Ember.Component.extend({
                 this.get('ajax').request('/browser/MAIN/CA-EN/CA-FR/concepts/' + conceptId)
                     .then((concept) => {
                         // First check for descriptions witn FSN in french - PG
-                        if(concept.descriptions.length > 0){
-                            let i = 0;
-                            let found = false;
-                            while(i < concept.descriptions.length && found == false){
-                                if(concept.descriptions[i].lang == 'fr' && concept.descriptions[i].type == 'FSN'){
-                                    this.set('conceptFsn', concept.descriptions[i].term)
-                                }
-                                i++;
-                            }
-                        } else {
-                            this.set('conceptFsn', concept.fsn);
-                        }
+                        //if(concept.descriptions.length > 0){
+                            // let i = 0;
+                            // let found = false;
+                            // while(i < concept.descriptions.length && found == false){
+                            //     if(concept.descriptions[i].lang == 'fr' && concept.descriptions[i].type == 'FSN'){
+                            //         this.set('conceptFsn', concept.descriptions[i].term)
+                            //     }
+                            //     i++;
+                            // }
+                        // } else {
+                        //     this.set('conceptFsn', concept.fsn);
+                        // }
+                        this.set('conceptFsn', concept.fsn);	
                     })
                     .catch(() => {
                         this.set('conceptFsn', conceptId);
