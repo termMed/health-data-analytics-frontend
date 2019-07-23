@@ -24,12 +24,12 @@ export default Ember.Component.extend({
                 // Changed to SNOWSTORM path - PG
                 this.get('ajax').request('/browser/MAIN/CA-EN/CA-FR/concepts/' + conceptId)
                     .then((concept) => {
-                        // First check for descriptions witn FSN in spanish - PG
+                        // First check for descriptions witn FSN in french - PG
                         if(concept.descriptions.length > 0){
                             let i = 0;
                             let found = false;
                             while(i < concept.descriptions.length && found == false){
-                                if(concept.descriptions[i].lang == 'es' && concept.descriptions[i].type == 'FSN'){
+                                if(concept.descriptions[i].lang == 'fr' && concept.descriptions[i].type == 'FSN'){
                                     this.set('conceptFsn', concept.descriptions[i].term)
                                 }
                                 i++;
@@ -60,8 +60,7 @@ export default Ember.Component.extend({
                                     });
                                     var list = {};
                                     var any = {};
-                                    //Spanish translation
-                                    any.fsn = "Cualquiera";
+                                    any.fsn = "Any";
                                     any.id = "*";
                                     any.subset = true;
                                     var filteredSubsets = [];
@@ -98,7 +97,7 @@ export default Ember.Component.extend({
                                 });
                                 var list = {};
                                 var any = {};
-                                any.fsn = "Cualquiera";
+                                any.fsn = "Any";
                                 any.id = "*";
                                 any.subset = true;
                                 var filteredSubsets = [];
@@ -142,8 +141,7 @@ export default Ember.Component.extend({
                                 });
                                 var list = {};
                                 var any = {};
-                                // Spanish translation
-                                any.fsn = "Cualquiera";
+                                any.fsn = "Any";
                                 any.id = "*";
                                 any.subset = true;
                                 var filteredSubsets = [];
@@ -166,8 +164,7 @@ export default Ember.Component.extend({
                                 });
                                 var list = {};
                                 var any = {};
-                                // Spanish translation
-                                any.fsn = "Cualquiera";
+                                any.fsn = "Any";
                                 any.id = "*";
                                 any.subset = true;
                                 var filteredSubsets = [];
