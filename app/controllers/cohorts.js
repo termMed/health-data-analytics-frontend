@@ -182,7 +182,7 @@ export default Ember.Controller.extend({
                                     console.log('Iterating encounters')
                                     var conceptId = encounter.conceptId;
                                     // Changed to SNOWSTORM path - PG
-                                    req.request('/find/MAIN/CA-EN/CA-FR/concepts/' + conceptId).then((result) => {
+                                    req.request('/find/MAIN/CA-EN/concepts/' + conceptId).then((result) => {
                                         // Change to set encounter term in spanish using Snowstorm data model - PG 
                                         Ember.set(encounter, 'conceptTerm', result.pt.term);
                                         console.log(encounter.conceptTerm);
