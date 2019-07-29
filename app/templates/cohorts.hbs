@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div autocomplete="off" class="col-md-6">
+    <div class="col-md-6">
          <div class="col-md-10 col-md-offset-1">
             <h3>Demographic:</h3>
         </div>
@@ -40,7 +40,7 @@
                   </select>
             </div>
         <div class="col-md-8">
-            {{concept-listing filter=model.primaryExposure value=model.primaryExposure limitedRange=true typeId=model.primaryLimitation conceptFsn=model.primaryFsn title='Primary Exposure' cssId="primaryExposure" autocomplete="off" }}
+            {{concept-listing filter=model.primaryExposure value=model.primaryExposure limitedRange=true typeId=model.primaryLimitation conceptFsn=model.primaryFsn title='Primary Exposure' cssId="primaryExposure"}}
         </div>
         {{#each model.inclusionCriteria as | refinement index|}}
             <div class="col-md-10 col-md-offset-1">
