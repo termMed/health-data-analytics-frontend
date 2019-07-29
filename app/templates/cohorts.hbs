@@ -40,7 +40,7 @@
                   </select>
             </div>
         <div class="col-md-8">
-            {{concept-listing filter=model.primaryExposure value=model.primaryExposure limitedRange=true typeId=model.primaryLimitation conceptFsn=model.primaryFsn title='Primary Exposure' cssId="primaryExposure"}}
+            {{concept-listing filter=model.primaryExposure value=model.primaryExposure limitedRange=true typeId=model.primaryLimitation conceptFsn=model.primaryFsn title='Primary Exposure' autocomplete="off" cssId="primaryExposure"}}
         </div>
         {{#each model.inclusionCriteria as | refinement index|}}
             <div class="col-md-10 col-md-offset-1">
